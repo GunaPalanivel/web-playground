@@ -112,6 +112,81 @@ merge conflicts caused by formatting differences.
 
 **Reference:** [Conventional Commits](https://www.conventionalcommits.org/)
 
+## 🔄 Git Workflow
+
+### Branch Strategy
+
+| Branch Type | Purpose           | Naming                     | Lifespan           |
+| ----------- | ----------------- | -------------------------- | ------------------ |
+| `main`      | Production-ready  | —                          | Permanent          |
+| `feature/*` | Session/task work | `feature/descriptive-name` | Delete after merge |
+| `hotfix/*`  | Urgent fixes      | `hotfix/issue-name`        | Delete after merge |
+
+**Example:**
+
+```
+main (production)
+├── feature/vscode-config ← merged
+├── feature/git-workflow ← current
+└── feature/calculator-demo ← planned
+```
+
+### Commit Frequency
+
+| Scenario    | Frequency   | Pattern                           |
+| ----------- | ----------- | --------------------------------- |
+| Small fix   | 1 commit    | `fix(scope): specific change`     |
+| Feature     | 1-3 commits | Break into logical steps          |
+| Refactoring | 1 commit    | `refactor(scope): extract module` |
+
+**Do's:**
+
+- ✅ Commit when logical unit is complete
+- ✅ Commit at least once per session
+- ✅ Commit before taking breaks
+
+**Don'ts:**
+
+- ❌ Commit broken code
+- ❌ Mix multiple features in one commit
+- ❌ Save everything in one EOD commit
+
+### Merge Strategy
+
+**Use No-FF (Preserve History):**
+
+```
+git checkout main
+git merge feature/git-workflow --no-ff -m "feat(session-2): complete git workflow setup"
+git push origin main
+```
+
+**Benefits:** Shows branch history, easy to revert, professional standard.
+
+### Pre-Push Checklist
+
+```
+# 1. Test locally (no errors in browser/console)
+# 2. Verify ESLint passes (no red underlines)
+# 3. Save files (Prettier auto-formats)
+# 4. Check what's being pushed
+git diff origin/main
+
+# 5. Push
+git push origin feature/git-workflow
+```
+
+### Undo Reference
+
+| Situation                       | Command                       |
+| ------------------------------- | ----------------------------- |
+| Undo last commit (not pushed)   | `git reset --hard HEAD~1`     |
+| Undo last commit (keep changes) | `git reset --soft HEAD~1`     |
+| Undo pushed commit              | `git revert <commit-hash>`    |
+| Save WIP temporarily            | `git stash` / `git stash pop` |
+
+---
+
 ## 🔧 VS Code & Extensions
 
 ### Installed Extensions
