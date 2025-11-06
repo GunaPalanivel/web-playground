@@ -1,0 +1,23 @@
+# Node & npm (future sessions)
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Environment
+.env
+.env.local
+
+# IDE & Editor
+.vscode/*.workspace
+*.code-workspace
+.idea/
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs & Temp
+*.log
+temp/
+tmp/
